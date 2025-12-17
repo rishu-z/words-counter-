@@ -169,6 +169,7 @@
             font-weight: bold;
             margin-bottom: 5px;
             color: #000;
+            transition: transform 0.2s ease;
         }
 
         .stat-label {
@@ -184,7 +185,6 @@
             margin-top: 3px;
         }
 
-        /* Word Frequency Section */
         .frequency-section {
             background: #fff;
             border: 2px solid #000;
@@ -238,7 +238,6 @@
             font-size: 0.9rem;
         }
 
-        /* Info Section */
         .info-section {
             background: #f9f9f9;
             border: 1px solid #ddd;
@@ -285,162 +284,18 @@
         }
 
         @keyframes slideIn {
-            from {
-                transform: translateX(400px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideOut {
-            from {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            to {
-                transform: translateX(400px);
-                opacity: 0;
-            }
+            from { transform: translateX(400px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
 
         @media (max-width: 968px) {
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-panel {
-                order: -1; /* Stats appear above text input on mobile */
-            }
-
-            .logo {
-                font-size: 2.5rem;
-            }
-
-            textarea {
-                min-height: 300px;
-            }
-
-            .stat-item {
-                display: grid;
-                grid-template-columns: auto 1fr;
-                gap: 15px;
-                align-items: center;
-                padding-bottom: 15px;
-                margin-bottom: 15px;
-            }
-
-            .stat-value {
-                font-size: 2rem;
-            }
-
-            .stat-label, .stat-description {
-                text-align: left;
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                padding: 10px;
-            }
-
-            .logo-header {
-                padding: 20px;
-            }
-
-            .logo {
-                font-size: 2rem;
-                letter-spacing: 2px;
-            }
-
-            .logo-subtitle {
-                font-size: 0.7rem;
-            }
-
-            .main-title {
-                font-size: 1.3rem;
-                margin-bottom: 20px;
-            }
-
-            .input-section, .stats-panel, .frequency-section {
-                padding: 20px;
-            }
-
-            .section-title {
-                font-size: 1rem;
-            }
-
-            .stat-value {
-                font-size: 1.8rem;
-            }
-
-            .stat-label {
-                font-size: 0.7rem;
-            }
-
-            .stat-description {
-                font-size: 0.65rem;
-            }
-
-            .button-row {
-                flex-direction: column;
-            }
-
-            button, .file-upload-btn {
-                width: 100%;
-                padding: 15px 20px;
-            }
-
-            textarea {
-                font-size: 0.95rem;
-                padding: 15px;
-            }
-
-            .frequency-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
-            }
-
-            .frequency-word {
-                font-size: 0.9rem;
-            }
-
-            .frequency-item > div:first-child {
-                width: 100%;
-            }
-
-            .notification {
-                left: 10px;
-                right: 10px;
-                top: 10px;
-                font-size: 0.75rem;
-                padding: 12px 15px;
-            }
-        }
-
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f0f0f0;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #000;
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #333;
+            .content-grid { grid-template-columns: 1fr; }
+            .logo { font-size: 2.5rem; }
+            textarea { min-height: 300px; }
         }
     </style>
 </head>
 <body>
-    <!-- Logo Header - Black BG with White Text -->
     <div class="logo-header">
         <div class="logo">&gt;W&lt;</div>
         <div class="logo-subtitle">Word Counter & Text Analysis</div>
@@ -450,7 +305,6 @@
         <h1 class="main-title">Text Analysis Tool</h1>
 
         <div class="content-grid">
-            <!-- Left: Text Input -->
             <div class="input-section">
                 <h2 class="section-title">Text Input</h2>
                 <textarea 
@@ -468,49 +322,35 @@
                 </div>
             </div>
 
-            <!-- Right: Statistics -->
             <div class="stats-panel">
                 <h2 class="section-title">Statistics</h2>
-                
                 <div class="stat-item">
                     <div class="stat-value" id="wordCount">0</div>
                     <div class="stat-label">Words</div>
-                    <div class="stat-description">Total word count</div>
                 </div>
-
                 <div class="stat-item">
                     <div class="stat-value" id="charCount">0</div>
                     <div class="stat-label">Characters (with spaces)</div>
-                    <div class="stat-description">Including whitespace</div>
                 </div>
-
                 <div class="stat-item">
                     <div class="stat-value" id="charCountNoSpace">0</div>
                     <div class="stat-label">Characters (no spaces)</div>
-                    <div class="stat-description">Excluding whitespace</div>
                 </div>
-
                 <div class="stat-item">
                     <div class="stat-value" id="sentenceCount">0</div>
                     <div class="stat-label">Sentences</div>
-                    <div class="stat-description">Total sentence count</div>
                 </div>
-
                 <div class="stat-item">
                     <div class="stat-value" id="lineCount">0</div>
                     <div class="stat-label">Lines</div>
-                    <div class="stat-description">Total line count</div>
                 </div>
-
                 <div class="stat-item">
                     <div class="stat-value" id="readingTime">0</div>
                     <div class="stat-label">Reading Time (min)</div>
-                    <div class="stat-description">Avg. reading speed</div>
                 </div>
             </div>
         </div>
 
-        <!-- Word Frequency Section -->
         <div class="frequency-section">
             <h2 class="section-title">Word Frequency Analysis</h2>
             <div id="frequencyList" class="frequency-list">
@@ -519,7 +359,7 @@
         </div>
 
         <div class="info-section">
-            This tool performs case-insensitive word counting and ignores punctuation for accurate analysis.
+            This tool performs case-insensitive word counting.
             All processing happens locally in your browser - your text never leaves your device.
         </div>
 
@@ -545,6 +385,7 @@
                 this.fileInput = document.getElementById('fileInput');
                 
                 this.initEventListeners();
+                this.loadSavedText();
             }
 
             initEventListeners() {
@@ -552,8 +393,6 @@
                 this.copyStatsBtn.addEventListener('click', () => this.copyStatistics());
                 this.clearBtn.addEventListener('click', () => this.clearText());
                 this.fileInput.addEventListener('change', (e) => this.handleFileUpload(e));
-                
-                this.loadSavedText();
             }
 
             updateCounts() {
@@ -567,30 +406,24 @@
                 const lines = this.countLines(text);
                 const readingTime = this.calculateReadingTime(words);
                 
-                this.animateCount(this.wordCountEl, words);
-                this.animateCount(this.charCountEl, chars);
-                this.animateCount(this.charCountNoSpaceEl, charsNoSpace);
-                this.animateCount(this.sentenceCountEl, sentences);
-                this.animateCount(this.lineCountEl, lines);
-                this.animateCount(this.readingTimeEl, readingTime);
+                this.updateDisplay(this.wordCountEl, words);
+                this.updateDisplay(this.charCountEl, chars);
+                this.updateDisplay(this.charCountNoSpaceEl, charsNoSpace);
+                this.updateDisplay(this.sentenceCountEl, sentences);
+                this.updateDisplay(this.lineCountEl, lines);
+                this.updateDisplay(this.readingTimeEl, readingTime);
                 
                 this.updateWordFrequency(text);
             }
 
             countWords(text) {
                 const trimmed = text.trim();
-                if (trimmed === '') return 0;
-                const words = trimmed.split(/\s+/);
-                return words.length;
+                return trimmed === '' ? 0 : trimmed.split(/\s+/).length;
             }
 
-            countCharacters(text) {
-                return text.length;
-            }
+            countCharacters(text) { return text.length; }
 
-            countCharactersNoSpace(text) {
-                return text.replace(/\s/g, '').length;
-            }
+            countCharactersNoSpace(text) { return text.replace(/\s/g, '').length; }
 
             countSentences(text) {
                 if (text.trim() === '') return 0;
@@ -599,76 +432,90 @@
             }
 
             countLines(text) {
-                if (text.trim() === '') return 0;
-                return text.split('\n').length;
+                return text.trim() === '' ? 0 : text.split('\n').length;
             }
 
-            calculateReadingTime(words) {
-                const minutes = Math.ceil(words / 200);
-                return minutes;
-            }
+            calculateReadingTime(words) { return Math.ceil(words / 200); }
 
             updateWordFrequency(text) {
                 if (text.trim() === '') {
-                    this.frequencyListEl.innerHTML = '<div class="empty-state">Start typing to see word frequency analysis</div>';
+                    this.frequencyListEl.innerHTML = '<div class="empty-state">Start typing to see frequency analysis</div>';
                     return;
                 }
-
-                // Clean text and get words
-                const words = text.toLowerCase()
-                    .replace(/[^\w\s]/g, '')
-                    .split(/\s+/)
-                    .filter(word => word.length > 0);
-
-                // Count frequency
+                const words = text.toLowerCase().replace(/[^\w\s]/g, '').split(/\s+/).filter(w => w.length > 0);
                 const frequency = {};
-                words.forEach(word => {
-                    frequency[word] = (frequency[word] || 0) + 1;
-                });
-
-                // Sort by frequency
-                const sorted = Object.entries(frequency)
-                    .sort((a, b) => b[1] - a[1])
-                    .slice(0, 20); // Top 20 words
-
-                // Find max frequency for bar width calculation
+                words.forEach(w => frequency[w] = (frequency[w] || 0) + 1);
+                const sorted = Object.entries(frequency).sort((a, b) => b[1] - a[1]).slice(0, 10);
                 const maxFreq = sorted[0] ? sorted[0][1] : 1;
 
-                // Display
                 this.frequencyListEl.innerHTML = sorted.map(([word, count]) => {
                     const percentage = (count / maxFreq) * 100;
-                    return `
-                        <div class="frequency-item">
-                            <div>
-                                <div class="frequency-word">${word}</div>
-                                <div class="frequency-bar" style="width: ${percentage}%"></div>
-                            </div>
-                            <div class="frequency-count">${count}</div>
-                        </div>
-                    `;
+                    return `<div class="frequency-item">
+                                <div><div class="frequency-word">${word}</div><div class="frequency-bar" style="width: ${percentage}%"></div></div>
+                                <div class="frequency-count">${count}</div>
+                            </div>`;
                 }).join('');
             }
 
-            animateCount(element, newValue) {
-                const currentValue = parseInt(element.textContent) || 0;
-                if (currentValue === newValue) return;
-                
-                element.style.transform = 'scale(1.1)';
-                element.textContent = newValue;
-                
+            updateDisplay(element, value) {
+                if (element.textContent !== value.toString()) {
+                    element.textContent = value;
+                    element.style.transform = 'scale(1.1)';
+                    setTimeout(() => element.style.transform = 'scale(1)', 100);
+                }
+            }
+
+            showNotification(msg) {
+                const div = document.createElement('div');
+                div.className = 'notification';
+                div.textContent = msg;
+                document.body.appendChild(div);
                 setTimeout(() => {
-                    element.style.transform = 'scale(1)';
-                }, 200);
+                    div.style.animation = 'slideOut 0.3s ease forwards';
+                    setTimeout(() => div.remove(), 300);
+                }, 2000);
             }
 
             handleFileUpload(event) {
                 const file = event.target.files[0];
-                if (!file) return;
-
-                if (!file.name.endsWith('.txt')) {
-                    this.showNotification('✗ ONLY .TXT FILES SUPPORTED');
+                if (!file || !file.name.endsWith('.txt')) {
+                    this.showNotification('✗ ONLY .TXT FILES');
                     return;
                 }
-
                 const reader = new FileReader();
-    
+                reader.onload = (e) => {
+                    this.textInput.value = e.target.result;
+                    this.updateCounts();
+                    this.showNotification('✓ FILE LOADED');
+                };
+                reader.readAsText(file);
+            }
+
+            copyStatistics() {
+                const stats = `WORDS: ${this.wordCountEl.textContent}\nCHARS: ${this.charCountEl.textContent}\nSENTENCES: ${this.sentenceCountEl.textContent}`;
+                navigator.clipboard.writeText(stats).then(() => this.showNotification('✓ COPIED TO CLIPBOARD'));
+            }
+
+            clearText() {
+                this.textInput.value = '';
+                this.updateCounts();
+                localStorage.removeItem('savedText');
+                this.showNotification('✓ CLEARED');
+            }
+
+            saveText(text) { localStorage.setItem('savedText', text); }
+            
+            loadSavedText() {
+                const saved = localStorage.getItem('savedText');
+                if (saved) {
+                    this.textInput.value = saved;
+                    this.updateCounts();
+                }
+            }
+        }
+
+        // Run application
+        new WordCounter();
+    </script>
+</body>
+</html>
